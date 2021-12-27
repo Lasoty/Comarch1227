@@ -27,6 +27,7 @@ namespace ComarchCwiczenia
             Console.WriteLine("3. Mnożenie");
             Console.WriteLine("4. Dzielenie");
             Console.WriteLine("5. Licznik");
+            Console.WriteLine("6. Sortowanie");
 
             Console.Write("Podaj pozycje menu: ");
             if (int.TryParse(Console.ReadLine(), out int choise))
@@ -77,6 +78,21 @@ namespace ComarchCwiczenia
                     }
 
                     Calculator.ShowArray(tab);
+                }
+
+                if (choise == 6)
+                {
+                    int[] tab = new int[20];
+                    Random rand = new Random((int)DateTime.Now.Ticks);
+
+                    for (int i = 0; i < tab.Length ; i++)
+                    {
+                        tab[i] = rand.Next(x, y);
+                    }
+                    Calculator.ShowArray(tab);
+
+                    int[] sortettab = Calculator.SortArray(tab);
+                    Calculator.ShowArray(sortettab);
                 }
             }
             else

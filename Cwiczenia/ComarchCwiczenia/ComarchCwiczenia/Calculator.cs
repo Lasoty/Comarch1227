@@ -39,5 +39,14 @@ namespace ComarchCwiczenia
             }
             Console.WriteLine("]");
         }
+
+        internal static int[] SortArray(int[] tab)
+        {
+            int[] result = new int[tab.Length];
+
+            //sortowanie
+
+            return result;
+        }
     }
 }
