@@ -43,8 +43,20 @@ namespace ComarchCwiczenia
         internal static int[] SortArray(int[] tab)
         {
             int[] result = new int[tab.Length];
+            tab.CopyTo(result, 0);
 
-            //sortowanie
+            for (int j = 0; j <= result.Length - 2; j++)
+            {
+                for (int i = 0; i <= result.Length - 2; i++)
+                {
+                    if (result[i] > result[i + 1])
+                    {
+                        int temp = result[i + 1];
+                        result[i + 1] = result[i];
+                        result[i] = temp;
+                    }
+                }
+            }
 
             return result;
         }
