@@ -26,6 +26,7 @@ namespace ComarchCwiczenia
             Console.WriteLine("2. Odejmowanie");
             Console.WriteLine("3. Mnożenie");
             Console.WriteLine("4. Dzielenie");
+            Console.WriteLine("5. Licznik");
 
             Console.Write("Podaj pozycje menu: ");
             if (int.TryParse(Console.ReadLine(), out int choise))
@@ -64,6 +65,18 @@ namespace ComarchCwiczenia
 
                     int result = Calculator.Calculate(x, y, "/");
                     Console.WriteLine($"Wynik {x} / {y} = {result}.");
+                }
+
+                if (choise == 5)
+                {
+                    int lenght = (y - x) + 1;
+                    int[] tab = new int[lenght];
+                    for (int i = 0; i < lenght; i++)
+                    {
+                        tab[i] = x + i;
+                    }
+
+                    Calculator.ShowArray(tab);
                 }
             }
             else

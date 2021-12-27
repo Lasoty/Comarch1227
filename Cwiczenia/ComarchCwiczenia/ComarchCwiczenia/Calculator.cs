@@ -29,5 +29,15 @@ namespace ComarchCwiczenia
 
             return result;
         }
+
+        internal static void ShowArray(int[] tab)
+        {
+            Console.Write("[");
+            foreach (int item in tab)
+            {
+                Console.Write($"{item}, ");
+            }
+            Console.WriteLine("]");
+        }
     }
 }
