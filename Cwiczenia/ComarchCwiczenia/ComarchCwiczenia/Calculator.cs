@@ -16,6 +16,15 @@ namespace ComarchCwiczenia
                 case "+":
                     result = x + y;
                     break;
+                case "-":
+                    result = x - y;
+                    break;
+                case "*":
+                    result = x * y;
+                    break;
+                case "/":
+                    result = x / y;
+                    break;
             }
 
             return result;

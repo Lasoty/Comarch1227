@@ -24,6 +24,8 @@ namespace ComarchCwiczenia
             Console.WriteLine("KALKULATOR 1.0-alfa");
             Console.WriteLine("1. Dodawanie");
             Console.WriteLine("2. Odejmowanie");
+            Console.WriteLine("3. Mnożenie");
+            Console.WriteLine("4. Dzielenie");
 
             Console.Write("Podaj pozycje menu: ");
             if (int.TryParse(Console.ReadLine(), out int choise))
@@ -38,6 +40,30 @@ namespace ComarchCwiczenia
                 {
                     int result = Calculator.Calculate(x, y, "+");
                     Console.WriteLine($"Wynik {x} + {y} = {result}.");
+                }
+
+                if (choise == 2)
+                {
+                    int result = Calculator.Calculate(x, y, "-");
+                    Console.WriteLine($"Wynik {x} - {y} = {result}.");
+                }
+
+                if (choise == 3)
+                {
+                    int result = Calculator.Calculate(x, y, "*");
+                    Console.WriteLine($"Wynik {x} * {y} = {result}.");
+                }
+
+                if (choise == 4)
+                {
+                    if (y == 0)
+                    {
+                        Console.WriteLine("Pamiętaj cholero! Nie dziel przez 0!");
+                        return;
+                    }
+
+                    int result = Calculator.Calculate(x, y, "/");
+                    Console.WriteLine($"Wynik {x} / {y} = {result}.");
                 }
             }
             else
