@@ -23,6 +23,12 @@
             <MenuItem Header="Pomoc"/>
         </Menu>
 
+        <StatusBar DockPanel.Dock="Bottom">
+            <StatusBarItem>
+                <TextBlock Text="Wersja: 1.0" />
+            </StatusBarItem>
+        </StatusBar>
+
         <Grid />
     </DockPanel>
 
