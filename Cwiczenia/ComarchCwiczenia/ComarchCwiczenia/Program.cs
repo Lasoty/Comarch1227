@@ -28,6 +28,7 @@ namespace ComarchCwiczenia
             Console.WriteLine("4. Dzielenie");
             Console.WriteLine("5. Licznik");
             Console.WriteLine("6. Sortowanie");
+            Console.WriteLine("7. Tworzenie obiektu");
 
             Console.Write("Podaj pozycje menu: ");
             if (int.TryParse(Console.ReadLine(), out int choise))
@@ -41,6 +42,7 @@ namespace ComarchCwiczenia
                 if (choise == 1)
                 {
                     int result = Calculator.Add(x, y);
+                    result = Calculator.Calculate(operand: "+", y: y, x: x);
                     Console.WriteLine($"Wynik {x} + {y} = {result}.");
                 }
 
@@ -58,11 +60,11 @@ namespace ComarchCwiczenia
 
                 if (choise == 4)
                 {
-                    if (y == 0)
-                    {
-                        Console.WriteLine("Pamiętaj cholero! Nie dziel przez 0!");
-                        return;
-                    }
+                    //if (y == 0)
+                    //{
+                    //    Console.WriteLine("Pamiętaj cholero! Nie dziel przez 0!");
+                    //    return;
+                    //}
 
                     float result = Calculator.Divide(x, y);
                     Console.WriteLine($"Wynik {x} / {y} = {result}.");
@@ -77,7 +79,20 @@ namespace ComarchCwiczenia
                         tab[i] = x + i;
                     }
 
-                    Calculator.ShowArray(tab);
+
+
+                    try
+                    {
+                        Calculator.ShowArray(tab);
+                        //Calculator.ShowArray(null);
+                    }
+                    catch (Exception ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Wystąpił nieprzewidziany wyjątek");
+                        Console.ResetColor();
+                        throw;
+                    }
                 }
 
                 if (choise == 6)
@@ -85,7 +100,7 @@ namespace ComarchCwiczenia
                     int[] tab = new int[20];
                     Random rand = new Random((int)DateTime.Now.Ticks);
 
-                    for (int i = 0; i < tab.Length ; i++)
+                    for (int i = 0; i < tab.Length; i++)
                     {
                         tab[i] = rand.Next(x, y);
                     }
@@ -93,6 +108,15 @@ namespace ComarchCwiczenia
 
                     int[] sortettab = Calculator.SortArray(tab);
                     Calculator.ShowArray(sortettab);
+                }
+
+                if (choise == 7)
+                {
+                    Car car = new Car();
+                    car.SetMaker("Audi");
+                    car.Model = "A6";
+
+                    Console.WriteLine($"Marka: {car.Maker}, Model: {car.Model}.");
                 }
             }
             else

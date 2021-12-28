@@ -13,7 +13,7 @@ namespace ComarchCwiczenia
 {
     public class Calculator
     {
-        public static int Calculate(int x, int y, string operand) //+, -, *, /, %
+        public static int Calculate(int x, int y, string operand = "+") //+, -, *, /, %
         {
             int result = 0;
             switch (operand)
@@ -101,10 +101,10 @@ namespace ComarchCwiczenia
 
         public static float Divide(int x, int y)
         {
-            if (x == 0)
+            if (y != 0)
                 return x / (float)y;
 
-            return float.NaN;
+            throw new DivideByZeroException("Pamiętaj cholero! Nie dziel przez 0!");
         }
     }
 }
