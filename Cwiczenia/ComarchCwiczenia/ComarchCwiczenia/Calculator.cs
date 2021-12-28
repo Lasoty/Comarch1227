@@ -88,5 +88,23 @@ namespace ComarchCwiczenia
         {
             return x + y;
         }
+
+        public static int Subtract(int x, int y)
+        {
+            return x - y;
+        }
+
+        public static int Multiply(int x, int y)
+        {
+            return x * y;
+        }
+
+        public static float Divide(int x, int y)
+        {
+            if (x == 0)
+                return x / (float)y;
+
+            return float.NaN;
+        }
     }
 }

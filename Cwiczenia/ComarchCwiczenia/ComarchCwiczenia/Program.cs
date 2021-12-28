@@ -46,13 +46,13 @@ namespace ComarchCwiczenia
 
                 if (choise == 2)
                 {
-                    int result = Calculator.Calculate(x, y, "-");
+                    int result = Calculator.Subtract(x, y);
                     Console.WriteLine($"Wynik {x} - {y} = {result}.");
                 }
 
                 if (choise == 3)
                 {
-                    int result = Calculator.Calculate(x, y, "*");
+                    int result = Calculator.Multiply(x, y);
                     Console.WriteLine($"Wynik {x} * {y} = {result}.");
                 }
 
@@ -64,7 +64,7 @@ namespace ComarchCwiczenia
                         return;
                     }
 
-                    int result = Calculator.Calculate(x, y, "/");
+                    float result = Calculator.Divide(x, y);
                     Console.WriteLine($"Wynik {x} / {y} = {result}.");
                 }
 
