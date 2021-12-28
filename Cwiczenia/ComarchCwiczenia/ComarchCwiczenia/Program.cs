@@ -40,7 +40,7 @@ namespace ComarchCwiczenia
 
                 if (choise == 1)
                 {
-                    int result = Calculator.Calculate(x, y, "+");
+                    int result = Calculator.Add(x, y);
                     Console.WriteLine($"Wynik {x} + {y} = {result}.");
                 }
 

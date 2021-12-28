@@ -1,4 +1,9 @@
-﻿using System;
+﻿/*
+ * Author: Leszek Lewandowski
+ * Date: 28-12-2021
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -59,6 +64,29 @@ namespace ComarchCwiczenia
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// Sumuje dowolną ilośc liczb całkowitych
+        /// </summary>
+        /// <param name="numbers">Liczba do zsumowania</param>
+        /// <returns>Suma liczb całkowitych</returns>
+        public static int Add(params int[] numbers)
+        {
+            // Inicjowanie zmiennej 
+            int result = 0;
+
+            if (numbers != null)
+            {
+                result = numbers.Sum();
+            }
+
+            return result;
+        }
+
+        public static float Add(float x, float y)
+        {
+            return x + y;
         }
     }
 }
