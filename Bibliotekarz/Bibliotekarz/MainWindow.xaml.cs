@@ -2,6 +2,7 @@
 using Bibliotekarz.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,8 @@ namespace Bibliotekarz
     {
         private readonly BookService bookService = new BookService();
 
-        public List<Book> BookList { get; set; }
+        public ObservableCollection<Book> BookList { get; set; }
+            = new ObservableCollection<Book>();
 
         public MainWindow()
         {
@@ -34,13 +36,27 @@ namespace Bibliotekarz
 
         private void GetData()
         {
-            BookList = bookService.GetBooks();
+            BookList.Clear();
+            foreach (var item in bookService.GetBooks())
+            {
+                BookList.Add(item);
+            }
+
             dgBooks.ItemsSource = BookList;
         }
 
         private void OnPlikZamknijClick(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void OnNewItemClick(object sender, RoutedEventArgs e)
+        {
+            BookWindow bookWindow = new BookWindow();
+            if (bookWindow.ShowDialog() == true)
+            {
+                BookList.Add(bookWindow.BookProperty);
+            }
         }
     }
 }

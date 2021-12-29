@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Bibliotekarz.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,26 @@ namespace Bibliotekarz
     /// </summary>
     public partial class BookWindow : Window
     {
+        public Book BookProperty { get; set; }
+
         public BookWindow()
         {
             InitializeComponent();
+            BookProperty = new Book
+            {
+                Borrower = new Customer()
+            };
+            this.DataContext = BookProperty;
+        }
+
+        private void OnSaveClick(object sender, RoutedEventArgs e)
+        {
+            if (!BookProperty.IsBorrowed)
+            {
+                BookProperty.Borrower = null;
+            }
+            this.DialogResult = true;
+            this.Hide();
         }
     }
 }

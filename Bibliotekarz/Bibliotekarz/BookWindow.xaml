@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:Bibliotekarz"
         mc:Ignorable="d"
         Title="Nowa książka" Height="450" Width="600">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5"/>
@@ -43,23 +46,27 @@
 
 
         <Label Grid.Column="1" Grid.Row="3" Content="Tytuł" />
-        <TextBox Grid.Column="3" Grid.Row="3" Text="TextBox" />
+        <TextBox Grid.Column="3" Grid.Row="3" Text="{Binding Title}" />
 
         <Label Grid.Column="1" Grid.Row="5" Content="Autor" />
-        <TextBox Grid.Column="3" Grid.Row="5" Text="TextBox" />
+        <TextBox Grid.Column="3" Grid.Row="5" Text="{Binding Author}" />
 
         <Label Grid.Column="1" Grid.Row="7" Content="Liczba stron" />
-        <TextBox Grid.Column="3" Grid.Row="7" Text="TextBox" />
+        <TextBox Grid.Column="3" Grid.Row="7" Text="{Binding PageCount}" />
 
         <Label Grid.Column="1" Grid.Row="9" Content="Czy wypożyczona" />
-        <CheckBox Grid.Column="3" Grid.Row="9" IsChecked="True"
+        <CheckBox Name="chkIsBorrowed" Grid.Column="3" Grid.Row="9" IsChecked="{Binding IsBorrowed}"
                   Margin="0,4"/>
 
-        <Label Grid.Column="1" Grid.Row="11" Content="Imię wypożyczającego" />
-        <TextBox Grid.Column="3" Grid.Row="11" Text="TextBox" />
+        <Label Grid.Column="1" Grid.Row="11" Content="Imię wypożyczającego" 
+               Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=chkIsBorrowed}" />
+        <TextBox Grid.Column="3" Grid.Row="11" Text="{Binding Borrower.FirstName}"
+                 Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=chkIsBorrowed}" />
 
-        <Label Grid.Column="1" Grid.Row="13" Content="Nazwisko wypożyczającego" />
-        <TextBox Grid.Column="3" Grid.Row="13" Text="TextBox" />
+        <Label Grid.Column="1" Grid.Row="13" Content="Nazwisko wypożyczającego"
+               Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=chkIsBorrowed}" />
+        <TextBox Grid.Column="3" Grid.Row="13" Text="{Binding Borrower.LastName}"
+                 Visibility="{Binding IsChecked, Converter={StaticResource BooleanToVisibilityConverter}, ElementName=chkIsBorrowed}" />
 
 
         <Rectangle Grid.Row="15" Grid.ColumnSpan="5" 
@@ -84,6 +91,7 @@
                 HorizontalAlignment="Right" 
                 VerticalAlignment="Bottom"
                 Margin="0,0,70,10" 
+                Click="OnSaveClick"
                 />
 
     </Grid>

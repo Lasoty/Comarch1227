@@ -16,7 +16,7 @@
                           Click="OnPlikZamknijClick"/>
             </MenuItem>
             <MenuItem Header="Edycja">
-                <MenuItem Header="Nowy"/>
+                <MenuItem Header="Nowy" Click="OnNewItemClick"/>
                 <MenuItem Header="Edytuj"/>
                 <MenuItem Header="Usuń"/>
             </MenuItem>
