@@ -19,7 +19,7 @@ namespace Bibliotekarz.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                string conn = "Server=localhost;Database=BibliotekarzDb;MultipleActiveResultSets=true";
+                string conn = "Server=localhost;Database=BibliotekarzDb6;Trusted_Connection=True;MultipleActiveResultSets=true";
                 optionsBuilder.UseSqlServer(conn);
             }
             base.OnConfiguring(optionsBuilder);
