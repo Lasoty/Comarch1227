@@ -56,7 +56,8 @@ namespace Bibliotekarz
             BookWindow bookWindow = new BookWindow();
             if (bookWindow.ShowDialog() == true)
             {
-                BookList.Add(bookWindow.BookProperty);
+                bookService.AddBook(bookWindow.BookProperty);
+                GetData();
             }
         }
 

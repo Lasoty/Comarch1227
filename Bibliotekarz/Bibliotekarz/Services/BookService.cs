@@ -1,4 +1,6 @@
-﻿using Bibliotekarz.Model;
+﻿using Bibliotekarz.Data;
+using Bibliotekarz.Model;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -19,7 +21,18 @@ namespace Bibliotekarz.Services
 
         public List<Book> GetBooks()
         {
-            return GetFakeBooks();
+            //return GetFakeBooks();
+            List<Book> results;
+            using(ApplicationDataContext dbContext = new ApplicationDataContext())
+            {
+                results = dbContext.Books
+                    .Where(book => book.PageCount > 0)
+                    .Include(book => book.Borrower)
+                    .OrderByDescending(book => book.Title)
+                    .ThenBy(book => book.Author)
+                    .ToList();
+            }
+            return results;
         }
 
         private List<Book> GetFakeBooks()
@@ -102,6 +115,34 @@ namespace Bibliotekarz.Services
             //Book book6 =  stackBooks.Peek();
 
             return books;
+        }
+
+        internal void AddBook(Book book)
+        {
+            using(ApplicationDataContext dbContext = new ApplicationDataContext())
+            {
+                dbContext.Books.Add(book);
+                dbContext.SaveChanges();
+            }
+
+        }
+
+        internal void EditBook(Book book)
+        {
+            using (ApplicationDataContext dbContext = new ApplicationDataContext())
+            {
+                Book entity = dbContext.Books.FirstOrDefault(x => x.Id == book.Id);
+                if (entity != null)
+                {
+                    entity.Title = book.Title;
+                    entity.Author = book.Author;
+                    entity.PageCount = book.PageCount;
+                    entity.IsBorrowed = book.IsBorrowed;
+
+                    dbContext.Books.Update(entity);
+                    dbContext.SaveChanges();
+                }
+            }
         }
 
         internal void SaveDataInFile(string fileName, ICollection<Book> bookList)
