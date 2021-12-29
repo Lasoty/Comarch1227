@@ -1,5 +1,6 @@
 ﻿using Bibliotekarz.Model;
 using Bibliotekarz.Services;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -57,6 +58,18 @@ namespace Bibliotekarz
             {
                 BookList.Add(bookWindow.BookProperty);
             }
+        }
+
+        private void OnExportDataClick(object sender, RoutedEventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.Filter = "CSV documents (.csv)|*.csv|Text documents (.txt)|*.txt";
+
+            if (sfd.ShowDialog() == true)
+            {
+                bookService.SaveDataInFile(sfd.FileName, BookList);
+            }
+
         }
     }
 }

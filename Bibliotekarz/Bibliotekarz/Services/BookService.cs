@@ -1,6 +1,8 @@
 ﻿using Bibliotekarz.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -100,6 +102,35 @@ namespace Bibliotekarz.Services
             //Book book6 =  stackBooks.Peek();
 
             return books;
+        }
+
+        internal void SaveDataInFile(string fileName, ICollection<Book> bookList)
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            stringBuilder.AppendLine($"{nameof(Book.Id)};{nameof(Book.Title)};{nameof(Book.Author)};{nameof(Book.PageCount)};{nameof(Book.IsBorrowed)};{nameof(Customer.Id)};{nameof(Customer.FirstName)};{nameof(Customer.LastName)}");
+
+            foreach (Book item in bookList)
+            {
+                stringBuilder.Append(item.Id).Append(";");
+                stringBuilder.Append(item.Title).Append(";");
+                stringBuilder.Append(item.Author).Append(";");
+                stringBuilder.Append(item.PageCount).Append(";");
+                stringBuilder.Append(item.IsBorrowed).Append(";");
+
+                if (item.Borrower != null)
+                {
+                    stringBuilder.Append(item.Borrower.Id).Append(";");
+                    stringBuilder.Append(item.Borrower.FirstName).Append(";");
+                    stringBuilder.Append(item.Borrower.LastName);
+                }
+                else
+                {
+                    stringBuilder.Append(";;");
+                }
+                stringBuilder.AppendLine();
+            }
+
+            File.WriteAllText(fileName, stringBuilder.ToString());
         }
     }
 }
