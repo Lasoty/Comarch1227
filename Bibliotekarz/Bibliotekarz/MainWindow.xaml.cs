@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Bibliotekarz.Model;
+using Bibliotekarz.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,20 @@ namespace Bibliotekarz
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly BookService bookService = new BookService();
+
+        public List<Book> BookList { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
+            GetData();
+        }
+
+        private void GetData()
+        {
+            BookList = bookService.GetBooks();
+            dgBooks.ItemsSource = BookList;
         }
 
         private void OnPlikZamknijClick(object sender, RoutedEventArgs e)

@@ -97,7 +97,7 @@ namespace Bibliotekarz.Services
             Stack<Book> stackBooks = new Stack<Book>();
             stackBooks.Push(book3);
             Book book5 =  stackBooks.Pop();
-            Book book6 =  stackBooks.Peek();
+            //Book book6 =  stackBooks.Peek();
 
             return books;
         }
