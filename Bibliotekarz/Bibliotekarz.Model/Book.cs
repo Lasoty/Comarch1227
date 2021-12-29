@@ -2,10 +2,8 @@
 
 namespace Bibliotekarz.Model
 {
-    public class Book
+    public class Book : EntityBase
     {
-        public int Id { get; set; }
-
         public string Author { get; set; }
 
         public string Title { get; set; }
@@ -15,5 +13,10 @@ namespace Bibliotekarz.Model
         public bool IsBorrowed { get; set; }
 
         public Customer Borrower { get; set; }
+
+        public override void Test()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
